@@ -39,8 +39,8 @@ class SMLayerIndexed : public SM_Layer {
         SMLayerIndexed(uint16_t width, uint16_t height);
         void begin(void);
         void frameRefreshCallback();
-        void fillRefreshRow(uint16_t hardwareY, rgb48 refreshRow[], int brightnessShifts = 0);
-        void fillRefreshRow(uint16_t hardwareY, rgb24 refreshRow[], int brightnessShifts = 0);
+        void fillRefreshRow(UINT16 hardwareY, rgb48 refreshRow[], int brightnessShifts = 0);
+        void fillRefreshRow(UINT16 hardwareY, rgb24 refreshRow[], int brightnessShifts = 0);
 
         void enableColorCorrection(bool enabled);
 
@@ -51,7 +51,7 @@ class SMLayerIndexed : public SM_Layer {
         void drawPixel(int16_t x, int16_t y, uint8_t index);
         void setFont(fontChoices newFont);
         // todo: handle index (draw transparent)
-        void drawChar(int16_t x, int16_t y, uint8_t index, char character);
+        void drawChar(INT16 x, INT16 y, uint8_t index, char character);
         void drawString(int16_t x, int16_t y, uint8_t index, const char text []);
         void drawMonoBitmap(int16_t x, int16_t y, uint8_t width, uint8_t height, uint8_t index, uint8_t *bitmap);
 

@@ -65,7 +65,7 @@ void SMLayerIndexed<RGB, optionFlags>::frameRefreshCallback(void) {
 // returns true and copies color to xyPixel if pixel is opaque, returns false if not
 template<typename RGB, unsigned int optionFlags> template <typename RGB_OUT>
 bool SMLayerIndexed<RGB, optionFlags>::getPixel(uint16_t hardwareX, uint16_t hardwareY, RGB_OUT &xyPixel) {
-    uint16_t localScreenX, localScreenY;
+    UINT16 localScreenX, localScreenY;
 
     // convert hardware x/y to the pixel in the local screen
     switch( this->layerRotation ) {
@@ -101,9 +101,9 @@ bool SMLayerIndexed<RGB, optionFlags>::getPixel(uint16_t hardwareX, uint16_t har
 }
 
 template <typename RGB, unsigned int optionFlags>
-void SMLayerIndexed<RGB, optionFlags>::fillRefreshRow(uint16_t hardwareY, rgb48 refreshRow[], int brightnessShifts) {
+void SMLayerIndexed<RGB, optionFlags>::fillRefreshRow(UINT16 hardwareY, rgb48 refreshRow[], int brightnessShifts) {
     RGB currentPixel;
-    int i;
+    UINT16 i;
 
     if(this->ccEnabled) {
         for(i=0; i<this->matrixWidth; i++) {
@@ -124,9 +124,9 @@ void SMLayerIndexed<RGB, optionFlags>::fillRefreshRow(uint16_t hardwareY, rgb48 
 }
 
 template <typename RGB, unsigned int optionFlags>
-void SMLayerIndexed<RGB, optionFlags>::fillRefreshRow(uint16_t hardwareY, rgb24 refreshRow[], int brightnessShifts) {
+void SMLayerIndexed<RGB, optionFlags>::fillRefreshRow(UINT16 hardwareY, rgb24 refreshRow[], int brightnessShifts) {
     RGB currentPixel;
-    int i;
+    UINT16 i;
 
     if(this->ccEnabled) {
         for(i=0; i<this->matrixWidth; i++) {
@@ -234,19 +234,19 @@ void SMLayerIndexed<RGB, optionFlags>::setFont(fontChoices newFont) {
 }
 
 template <typename RGB, unsigned int optionFlags>
-void SMLayerIndexed<RGB, optionFlags>::drawChar(int16_t x, int16_t y, uint8_t index, char character) {
+void SMLayerIndexed<RGB, optionFlags>::drawChar(INT16 x, INT16 y, uint8_t index, char character) {
     uint8_t tempBitmask;
     int k;
 
     // only draw if character is on the screen
-    if (x + scrollFont->Width < 0 || x >= this->localWidth) {
+    if (x + scrollFont->Width < 0 || (unsigned)x >= this->localWidth) {
         return;
     }
 
     for (k = y; k < y+layerFont->Height; k++) {
         // ignore rows that are not on the screen
         if(k < 0) continue;
-        if (k >= this->localHeight) return;
+        if ((unsigned)k >= this->localHeight) return;
 
         tempBitmask = getBitmapFontRowAtXY(character, k - y, layerFont);
         if (x < 0) {
@@ -254,7 +254,7 @@ void SMLayerIndexed<RGB, optionFlags>::drawChar(int16_t x, int16_t y, uint8_t in
         } else {
             indexedBitmap[currentDrawBuffer*INDEXED_BUFFER_SIZE + (k * INDEXED_BUFFER_ROW_SIZE) + (x/8)] |= tempBitmask >> (x%8);
             // do two writes if the shifted 8-bit wide bitmask is still on the screen
-            if(x + 8 < this->localWidth && x % 8)
+            if((unsigned)(x + 8) < this->localWidth && x % 8)
                 indexedBitmap[currentDrawBuffer*INDEXED_BUFFER_SIZE + (k * INDEXED_BUFFER_ROW_SIZE) + (x/8) + 1] |= tempBitmask << (8-(x%8));
         }
     }

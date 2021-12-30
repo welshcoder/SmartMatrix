@@ -37,7 +37,7 @@
 #define PIXELS_PER_WORD                 2
 #define SHIFTER_PIXELS                  (RGBDATA_SHIFTERS*PIXELS_PER_WORD)
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 class SmartMatrixRefreshT4 {
     public:
         struct __attribute__((packed, aligned(2))) timerpair {
@@ -69,7 +69,7 @@ class SmartMatrixRefreshT4 {
         typedef void (*matrix_calc_callback)(bool initial);
 
         // init
-        SmartMatrixRefreshT4(uint8_t bufferrows, volatile rowDataStruct * rowDataBuf);
+        SmartMatrixRefreshT4(UINT8 bufferrows, volatile rowDataStruct * rowDataBuf);
         static void begin(void);
 
         // refresh API
@@ -86,9 +86,9 @@ class SmartMatrixRefreshT4 {
 
     private:
         // enable ISR access to private member variables
-        template <int refreshDepth1, int matrixWidth1, int matrixHeight1, unsigned char panelType1, uint32_t optionFlags1>
+        template <UINT16 refreshDepth1, UINT16 matrixWidth1, UINT16 matrixHeight1, UINT8 panelType1, uint32_t optionFlags1>
         friend void rowShiftCompleteISR(void);
-        template <int refreshDepth1, int matrixWidth1, int matrixHeight1, unsigned char panelType1, uint32_t optionFlags1>
+        template <UINT16 refreshDepth1, UINT16 matrixWidth1, UINT16 matrixHeight1, UINT8 panelType1, uint32_t optionFlags1>
         friend void rowCalculationISR(void);
 
         // init helper function called by begin()
@@ -97,11 +97,11 @@ class SmartMatrixRefreshT4 {
         // configuration helper function
         static void calculateTimerLUT(void);
 
-        static int dimmingFactor;
-        static const int dimmingMaximum = 255;
-        static uint16_t rowBitStructBytesToShift;
-        static uint16_t refreshRate;
-        static uint8_t dmaBufferNumRows;
+        static INT16 dimmingFactor;
+        static const INT16 dimmingMaximum = 255;
+        static UINT16 rowBitStructBytesToShift;
+        static UINT16 refreshRate;
+        static UINT8 dmaBufferNumRows;
         static volatile rowDataStruct * matrixUpdateRows;
 
         static timerpair timerLUT[LATCHES_PER_ROW];

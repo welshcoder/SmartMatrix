@@ -32,8 +32,8 @@ class SM_Layer {
         virtual void frameRefreshCallback() = 0;
 
         // fills refreshRow with matrixWidth values - hardwareY is < matrixHeight, not localHeight
-        virtual void fillRefreshRow(uint16_t hardwareY, rgb48 refreshRow[], int brightnessShifts = 0) = 0;
-        virtual void fillRefreshRow(uint16_t hardwareY, rgb24 refreshRow[], int brightnessShifts = 0) = 0;
+        virtual void fillRefreshRow(UINT16 hardwareY, rgb48 refreshRow[], int brightnessShifts = 0) = 0;
+        virtual void fillRefreshRow(UINT16 hardwareY, rgb24 refreshRow[], int brightnessShifts = 0) = 0;
 
         virtual void setRotation(rotationDegrees newrotation);
         rotationDegrees getLayerRotation(void) const { return layerRotation; };
@@ -51,11 +51,11 @@ class SM_Layer {
         rotationDegrees layerRotation;
         
         // matrixWidth/Height: the dimensions of the physical hardware, with physical row 0 column 0 always in the upper left, independent of any rotation done in software
-        uint16_t matrixWidth, matrixHeight;
+        UINT16 matrixWidth, matrixHeight;
         // layerWidth/Height: the dimensions of the pixels stored in this layer, matching the orientation of the physical hardware, with physical row 0 column 0 always in the upper left, independent of any rotation done in software
-        uint16_t layerWidth, layerHeight;
+        UINT16 layerWidth, layerHeight;
         // the local dimensions of this layer with rotation applied, local x=0,y=0 in the upper left
-        uint16_t localWidth, localHeight;
+        UINT16 localWidth, localHeight;
         uint8_t refreshRate;
         
     private:
