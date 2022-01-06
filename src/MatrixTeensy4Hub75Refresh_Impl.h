@@ -64,50 +64,50 @@ struct pwm_pin_info_struct {
 extern "C" const struct pwm_pin_info_struct pwm_pin_info[];
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void rowShiftCompleteISR(void);
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void rowCalculationISR(void);
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 CircularBuffer_SM SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::dmaBuffer;
 // dmaBufferNumRows = the size of the buffer that DMA pulls from to refresh the display
 // must be minimum 2 rows so one can be updated while the other is refreshed
 // increase beyond two to give more time for the update routine to complete
 // (increase this number if non-DMA interrupts are causing display problems)
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-uint8_t SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::dmaBufferNumRows;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-uint16_t SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::refreshRate = 240;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-uint16_t SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::rowBitStructBytesToShift;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+UINT8 SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::dmaBufferNumRows;
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+UINT16 SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::refreshRate = 240;
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+UINT16 SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::rowBitStructBytesToShift;
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 typename SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::timerpair SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::timerLUT[LATCHES_PER_ROW];
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 DMAMEM typename SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::timerpair SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::timerPairIdle;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 volatile typename SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::rowDataStruct * SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixUpdateRows;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 typename SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrix_underrun_callback SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixUnderrunCallback;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 typename SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrix_calc_callback SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixCalcCallback;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 IMXRT_FLEXPWM_t * SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::flexpwm;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 uint8_t SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::submodule;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-int SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::dimmingFactor = dimmingMaximum - (100 * 255) / 100;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+INT16 SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::dimmingFactor = dimmingMaximum - (100 * 255) / 100;
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 volatile uint8_t DMAMEM SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::enablerSourceByte;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 typename SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::flexPinConfigStruct SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::flexPinConfig;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 typename SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::flexPinConfigStruct SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::addxPinConfig;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 IMXRT_FLEXIO_t * SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::flexIO;
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-FLASHMEM SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::SmartMatrixRefreshT4(uint8_t bufferrows, volatile rowDataStruct * rowDataBuf) {
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+FLASHMEM SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::SmartMatrixRefreshT4(UINT8 bufferrows, volatile rowDataStruct * rowDataBuf) {
     dmaBufferNumRows = bufferrows;
     matrixUpdateRows = rowDataBuf;
     timerPairIdle.timer_period = MIN_BLOCK_PERIOD_TICKS;
@@ -115,14 +115,14 @@ FLASHMEM SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType
     arm_dcache_flush((void*)&timerPairIdle, sizeof(timerPairIdle));
 
     // initialize matrixUpdateRows to all zeros to ensure all padding pixels are blank
-    for (int row = 0; row < dmaBufferNumRows; row++) {
+    for (UINT8 row = 0; row < dmaBufferNumRows; row++) {
         memset((void*) &matrixUpdateRows[row], 0, sizeof(rowDataStruct));
         arm_dcache_flush((void*) &matrixUpdateRows[row], sizeof(rowDataStruct));
     }
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FASTRUN bool SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::isRowBufferFree(void) {
     if (cbIsFull(&dmaBuffer))
         return false;
@@ -131,16 +131,16 @@ FASTRUN bool SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panel
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FASTRUN INLINE volatile typename SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::rowDataStruct * SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getNextRowBufferPtr(void) {
     return &(matrixUpdateRows[cbGetNextWrite(&dmaBuffer)]);
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FASTRUN INLINE void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::writeRowBuffer(uint8_t currentRow) {
     volatile SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::rowDataStruct * currentRowDataPtr = SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getNextRowBufferPtr();
-    for (int i = 0; i < LATCHES_PER_ROW; i++) {
+    for (UINT16 i = 0; i < LATCHES_PER_ROW; i++) {
         currentRowDataPtr->rowbits[i].timerValues.timer_period = timerLUT[i].timer_period;
         currentRowDataPtr->rowbits[i].timerValues.timer_oe = timerLUT[i].timer_oe;
     }
@@ -150,13 +150,13 @@ FASTRUN INLINE void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FASTRUN void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::recoverFromDmaUnderrun(void) {
     // stop timer
     flexpwm->MCTRL &= ~FLEXPWM_MCTRL_RUN(1 << submodule);
 
     // point DMA addresses to the next buffer
-    int currentRow = cbGetNextRead(&dmaBuffer);
+    UINT16 currentRow = cbGetNextRead(&dmaBuffer);
 
     dmaUpdateTimer.TCD->SADDR = &(SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixUpdateRows[currentRow].rowbits[0].timerValues.timer_oe);
     dmaClockOutData.TCD->SADDR = SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixUpdateRows[currentRow].rowbits[0].data;
@@ -173,23 +173,23 @@ FASTRUN void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panel
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::setMatrixCalculationsCallback(matrix_calc_callback f) {
     matrixCalcCallback = f;
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::setMatrixUnderrunCallback(matrix_underrun_callback f) {
     matrixUnderrunCallback = f;
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::calculateTimerLUT(void) {
-    int i;
-    uint32_t ticksUsed;
-    uint16_t msbBlockTicks = IDEAL_MSB_BLOCK_TICKS + MSB_BLOCK_TICKS_ADJUSTMENT_INCREMENT;
+    UINT32 i;
+    UINT32 ticksUsed;
+    UINT16 msbBlockTicks = IDEAL_MSB_BLOCK_TICKS + MSB_BLOCK_TICKS_ADJUSTMENT_INCREMENT;
 
     // start with ideal width of the MSB, and keep lowering until the width of all bits fits within TICKS_PER_ROW
     do {
@@ -210,12 +210,12 @@ void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, op
         // updates the row in this time
 
         // period is max on time for this block, plus the dead time while the latch is high
-        uint16_t period = (msbBlockTicks >> (LATCHES_PER_ROW - i - 1)) + LATCH_TIMER_PULSE_WIDTH_TICKS;
+        UINT16 period = (msbBlockTicks >> (LATCHES_PER_ROW - i - 1)) + LATCH_TIMER_PULSE_WIDTH_TICKS;
         // on-time is the max on-time * dimming factor, plus the dead time while the latch is high
-        uint16_t ontime = (((msbBlockTicks >> (LATCHES_PER_ROW - i - 1)) * dimmingFactor) / dimmingMaximum) + LATCH_TIMER_PULSE_WIDTH_TICKS;
+        UINT16 ontime = (((msbBlockTicks >> (LATCHES_PER_ROW - i - 1)) * dimmingFactor) / dimmingMaximum) + LATCH_TIMER_PULSE_WIDTH_TICKS;
 
         if (period < MIN_BLOCK_PERIOD_TICKS) {
-            uint16_t padding = (MIN_BLOCK_PERIOD_TICKS) - period; // padding is necessary to allow enough time for data to output to the display
+            UINT16 padding = (MIN_BLOCK_PERIOD_TICKS) - period; // padding is necessary to allow enough time for data to output to the display
             period += padding;
             ontime += padding; // by adding the same padding to the "ontime", the observed intensity is not affected and is still correct
         }
@@ -237,14 +237,14 @@ void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, op
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::setBrightness(uint8_t newBrightness) {
     dimmingFactor = dimmingMaximum - newBrightness;
     calculateTimerLUT();
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::setRefreshRate(uint16_t newRefreshRate) {
     if (newRefreshRate <= MIN_REFRESH_RATE)
         refreshRate = MIN_REFRESH_RATE;
@@ -256,7 +256,7 @@ void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, op
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FLASHMEM void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::begin(void) {
     cbInit(&dmaBuffer, dmaBufferNumRows);
 
@@ -307,7 +307,7 @@ FLASHMEM void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, pane
     // Thanks to Bob Davis: http://bobdavis321.blogspot.com/2019/02/p3-64x32-hub75e-led-matrix-panels-with.html
     if (optionFlags & SMARTMATRIX_OPTIONS_FM6126A_RESET_AT_START) {
         // TODO: any harm in sending a longer sequence to cover a possible wider case?
-        int maxLeds = 256;
+        UINT16 maxLeds = 256;
         int C12[16] = {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
         int C13[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0};
 
@@ -320,8 +320,8 @@ FLASHMEM void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, pane
         delay(1);
 
         // Send Data to control register 11
-        for (int i = 0; i < maxLeds; i++) {
-            int y = i % 16;
+        for (UINT16 i = 0; i < maxLeds; i++) {
+            UINT8 y = i % 16;
             digitalWriteFast(FLEXIO_PIN_B0_TEENSY_PIN, LOW);
             digitalWriteFast(FLEXIO_PIN_R0_TEENSY_PIN, LOW);
             digitalWriteFast(FLEXIO_PIN_R1_TEENSY_PIN, LOW);
@@ -352,8 +352,8 @@ FLASHMEM void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, pane
         digitalWriteFast(FLEXPWM_PIN_LATCH_TEENSY_PIN, LOW);
 
         // Send Data to control register 12
-        for (int i = 0; i < maxLeds; i++) {
-            int y = i % 16;
+        for (UINT16 i = 0; i < maxLeds; i++) {
+            UINT8 y = i % 16;
             digitalWriteFast(FLEXIO_PIN_B0_TEENSY_PIN, LOW);
             digitalWriteFast(FLEXIO_PIN_R0_TEENSY_PIN, LOW);
             digitalWriteFast(FLEXIO_PIN_R1_TEENSY_PIN, LOW);
@@ -396,7 +396,7 @@ FLASHMEM void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, pane
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FLASHMEM void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::hardwareSetup() {
     /*  Set up FlexIO peripheral for clocking out data to LED matrix panel.
 
@@ -755,13 +755,13 @@ FLASHMEM void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, pane
 
 
 // low priority ISR triggered by software interrupt on a DMA channel that doesn't need interrupts otherwise
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FASTRUN void rowCalculationISR(void) {
     SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixCalcCallback(false);
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FASTRUN void rowShiftCompleteISR(void) {
     /*  This interrupt runs at the completion of dmaClockOutData when a complete bitplane has been output to the panel.
         If we have finished all the bitplanes for this row, it's time to update the source address of the dmaClockOutData to
@@ -790,7 +790,7 @@ FASTRUN void rowShiftCompleteISR(void) {
             SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixUnderrunCallback();
         } else {
             // get next row to draw to display and update DMA pointers
-            int currentRow = cbGetNextRead(&SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::dmaBuffer);
+            UINT16 currentRow = cbGetNextRead(&SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::dmaBuffer);
             dmaClockOutData.TCD->SADDR = SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixUpdateRows[currentRow].rowbits[0].data;
             dmaUpdateTimer.TCD->SADDR = &(SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixUpdateRows[currentRow].rowbits[0].timerValues.timer_oe);
             SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::setRowAddress(currentRow); // change the row address we send to the panel
@@ -802,21 +802,21 @@ FASTRUN void rowShiftCompleteISR(void) {
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FASTRUN INLINE const typename SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::flexPinConfigStruct & SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getFlexPinConfig(void) {
     return flexPinConfig;
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FASTRUN void SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::setRowAddress(unsigned int row) {
     // Row addressing makes use of the same pins that output RGB color data. This is enabled by additional hardware on the SmartLED Shield.
     // The row address signals are latched when the BUFFER_LATCH pin goes high. We need to output the address data without any clock pulses
     // to avoid garbage pixel data. We can do this by putting the address data into a final FlexIO shifter which outputs when the data shifters
     // are emptied (at the end of the row transfer after the DMA channel completes). Only the lower 16 bits will output. */
-    unsigned int currentRowAddress = SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixUpdateRows[row].rowbits[0].rowAddress;
+    UINT32 currentRowAddress = SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixUpdateRows[row].rowbits[0].rowAddress;
 
-    uint32_t addressData = 0;
+    UINT32 addressData = 0;
     addressData |= (currentRowAddress & 0x01) ? (1 << addxPinConfig.addx0) : 0;
     addressData |= (currentRowAddress & 0x02) ? (1 << addxPinConfig.addx1) : 0;
     addressData |= (currentRowAddress & 0x04) ? (1 << addxPinConfig.addx2) : 0;

@@ -25,7 +25,7 @@
 
 // call when backgroundBuffers and backgroundColorCorrectionLUT buffer is allocated outside of class
 template <typename RGB, unsigned int optionFlags>
-SMLayerBackground<RGB, optionFlags>::SMLayerBackground(RGB * buffer, uint16_t width, uint16_t height, color_chan_t * colorCorrectionLUT) {
+SMLayerBackground<RGB, optionFlags>::SMLayerBackground(RGB * buffer, UINT16 width, UINT16 height, color_chan_t * colorCorrectionLUT) {
     backgroundBuffers[0] = buffer;
     backgroundBuffers[1] = buffer + (width * height);
     backgroundColorCorrectionLUT = colorCorrectionLUT;
@@ -107,9 +107,9 @@ void SMLayerBackground<RGB, optionFlags>::setBrightnessShifts(int numShifts) {
 }
 
 template <typename RGB, unsigned int optionFlags>
-void SMLayerBackground<RGB, optionFlags>::fillRefreshRow(uint16_t hardwareY, rgb48 refreshRow[], int brightnessShifts) {
+void SMLayerBackground<RGB, optionFlags>::fillRefreshRow(UINT16 hardwareY, rgb48 refreshRow[], int brightnessShifts) {
     RGB currentPixel;
-    int i;
+    UINT16 i;
 
     RGB *ptr = currentRefreshBufferPtr + (hardwareY * this->matrixWidth);
 
@@ -149,9 +149,9 @@ void SMLayerBackground<RGB, optionFlags>::fillRefreshRow(uint16_t hardwareY, rgb
 }
 
 template <typename RGB, unsigned int optionFlags>
-void SMLayerBackground<RGB, optionFlags>::fillRefreshRow(uint16_t hardwareY, rgb24 refreshRow[], int brightnessShifts) {
+void SMLayerBackground<RGB, optionFlags>::fillRefreshRow(UINT16 hardwareY, rgb24 refreshRow[], int brightnessShifts) {
     RGB currentPixel;
-    int i;
+    UINT16 i;
 
     RGB *ptr = currentRefreshBufferPtr + (hardwareY * this->matrixWidth);
 
@@ -194,22 +194,22 @@ extern volatile int framesInterpolated;
 #define INLINE __attribute__( ( always_inline ) ) inline
 
 template <typename RGB, unsigned int optionFlags>
-INLINE void SMLayerBackground<RGB, optionFlags>::loadPixelToDrawBuffer(int16_t hwx, int16_t hwy, const RGB& color) {
+INLINE void SMLayerBackground<RGB, optionFlags>::loadPixelToDrawBuffer(INT16 hwx, INT16 hwy, const RGB& color) {
     currentDrawBufferPtr[(hwy * this->matrixWidth) + hwx] = color;
 }
 
 template <typename RGB, unsigned int optionFlags>
-INLINE const RGB SMLayerBackground<RGB, optionFlags>::readPixelFromDrawBuffer(int16_t hwx, int16_t hwy) {
+INLINE const RGB SMLayerBackground<RGB, optionFlags>::readPixelFromDrawBuffer(INT16 hwx, INT16 hwy) {
     RGB pixel = currentDrawBufferPtr[(hwy * this->matrixWidth) + hwx];
     return pixel;
 }
 
 template <typename RGB, unsigned int optionFlags>
-void SMLayerBackground<RGB, optionFlags>::drawPixel(int16_t x, int16_t y, const RGB& color) {
-    int hwx, hwy;
+void SMLayerBackground<RGB, optionFlags>::drawPixel(INT16 x, INT16 y, const RGB& color) {
+    INT16 hwx, hwy;
 
     // check for out of bounds coordinates
-    if (x < 0 || y < 0 || x >= this->localWidth || y >= this->localHeight)
+    if (x < 0 || y < 0 || (unsigned)x >= this->localWidth || (unsigned)y >= this->localHeight)
         return;
 
     // map pixel into hardware buffer before writing
@@ -232,8 +232,8 @@ void SMLayerBackground<RGB, optionFlags>::drawPixel(int16_t x, int16_t y, const 
 
 // x0, x1, and y must be in bounds (0-this->localWidth/Height-1), x1 > x0
 template <typename RGB, unsigned int optionFlags>
-void SMLayerBackground<RGB, optionFlags>::drawHardwareHLine(uint16_t x0, uint16_t x1, uint16_t y, const RGB& color) {
-    int i;
+void SMLayerBackground<RGB, optionFlags>::drawHardwareHLine(UINT16 x0, UINT16 x1, UINT16 y, const RGB& color) {
+    UINT16 i;
 
     for (i = x0; i <= x1; i++) {
         loadPixelToDrawBuffer(i, y, color);
@@ -242,8 +242,8 @@ void SMLayerBackground<RGB, optionFlags>::drawHardwareHLine(uint16_t x0, uint16_
 
 // x, y0, and y1 must be in bounds (0-this->localWidth/Height-1), y1 > y0
 template <typename RGB, unsigned int optionFlags>
-void SMLayerBackground<RGB, optionFlags>::drawHardwareVLine(uint16_t x, uint16_t y0, uint16_t y1, const RGB& color) {
-    int i;
+void SMLayerBackground<RGB, optionFlags>::drawHardwareVLine(UINT16 x, UINT16 y0, UINT16 y1, const RGB& color) {
+    UINT16 i;
 
     for (i = y0; i <= y1; i++) {
         loadPixelToDrawBuffer(x, i, color);
@@ -257,14 +257,14 @@ void SMLayerBackground<RGB, optionFlags>::drawFastHLine(int16_t x0, int16_t x1, 
         SWAPint(x1, x0);
 
     // check for completely out of bounds line
-    if (x1 < 0 || x0 >= this->localWidth || y < 0 || y >= this->localHeight)
+    if (x1 < 0 || (unsigned)x0 >= this->localWidth || y < 0 || (unsigned)y >= this->localHeight)
         return;
 
     // truncate if partially out of bounds
     if (x0 < 0)
         x0 = 0;
 
-    if (x1 >= this->localWidth)
+    if ((unsigned)x1 >= this->localWidth)
         x1 = this->localWidth - 1;
 
     // map to hardware drawline function
@@ -286,14 +286,14 @@ void SMLayerBackground<RGB, optionFlags>::drawFastVLine(int16_t x, int16_t y0, i
         SWAPint(y1, y0);
 
     // check for completely out of bounds line
-    if (y1 < 0 || y0 >= this->localHeight || x < 0 || x >= this->localWidth)
+    if (y1 < 0 || (unsigned)y0 >= this->localHeight || x < 0 || (unsigned)x >= this->localWidth)
         return;
 
     // truncate if partially out of bounds
     if (y0 < 0)
         y0 = 0;
 
-    if (y1 >= this->localHeight)
+    if ((unsigned)y1 >= this->localHeight)
         y1 = this->localHeight - 1;
 
     // map to hardware drawline function
@@ -309,17 +309,17 @@ void SMLayerBackground<RGB, optionFlags>::drawFastVLine(int16_t x, int16_t y0, i
 }
 
 template <typename RGB, unsigned int optionFlags>
-void SMLayerBackground<RGB, optionFlags>::bresteepline(int16_t x3, int16_t y3, int16_t x4, int16_t y4, const RGB& color) {
+void SMLayerBackground<RGB, optionFlags>::bresteepline(INT16 x3, INT16 y3, INT16 x4, INT16 y4, const RGB& color) {
     // if point x3, y3 is on the right side of point x4, y4, change them
     if ((x3 - x4) > 0) {
         bresteepline(x4, y4, x3, y3, color);
         return;
     }
 
-    int x = x3, y = y3, sum = x4 - x3,  Dx = 2 * (x4 - x3), Dy = abs(2 * (y4 - y3));
-    int prirastokDy = ((y4 - y3) > 0) ? 1 : -1;
+    INT16 x = x3, y = y3, sum = x4 - x3,  Dx = 2 * (x4 - x3), Dy = abs(2 * (y4 - y3));
+    INT16 prirastokDy = ((y4 - y3) > 0) ? 1 : -1;
 
-    for (int i = 0; i <= x4 - x3; i++) {
+    for (INT16 i = 0; i <= x4 - x3; i++) {
         drawPixel(y, x, color);
         x++;
         sum -= Dy;
@@ -924,9 +924,9 @@ void SMLayerBackground<RGB, optionFlags>::drawString(int16_t x, int16_t y, const
 }
 
 template <typename RGB, unsigned int optionFlags>
-void SMLayerBackground<RGB, optionFlags>::drawMonoBitmap(int16_t x, int16_t y, uint8_t width, uint8_t height,
+void SMLayerBackground<RGB, optionFlags>::drawMonoBitmap(INT16 x, INT16 y, uint8_t width, uint8_t height,
   const RGB& bitmapColor, const uint8_t *bitmap) {
-    int xcnt, ycnt;
+    UINT8 xcnt, ycnt;
 
     for (ycnt = 0; ycnt < height; ycnt++) {
         for (xcnt = 0; xcnt < width; xcnt++) {
@@ -1016,7 +1016,7 @@ void SMLayerBackground<RGB, optionFlags>::enableColorCorrection(bool enabled) {
 
 // reads pixel from drawing buffer, not refresh buffer
 template<typename RGB, unsigned int optionFlags>
-const RGB SMLayerBackground<RGB, optionFlags>::readPixel(int16_t x, int16_t y) {
+const RGB SMLayerBackground<RGB, optionFlags>::readPixel(UINT16 x, UINT16 y) {
     int hwx, hwy;
 
     // check for out of bounds coordinates
@@ -1047,6 +1047,6 @@ RGB *SMLayerBackground<RGB, optionFlags>::getRealBackBuffer() {
 }
 
 template<typename RGB, unsigned int optionFlags>
-RGB *SMLayerBackground<RGB, optionFlags>::getCurrentRefreshRow(uint16_t y) {
+RGB *SMLayerBackground<RGB, optionFlags>::getCurrentRefreshRow(UINT16 y) {
   return &currentRefreshBufferPtr[y*this->matrixWidth];
 }

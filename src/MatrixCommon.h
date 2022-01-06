@@ -26,6 +26,26 @@
 
 #include <stdint.h>
 
+#define SM_FAST_INTEGERS
+
+#if defined(SM_FAST_INTEGERS)
+typedef uint_fast8_t    UINT8;
+typedef int_fast8_t     INT8;
+typedef uint_fast16_t   UINT16;
+typedef int_fast16_t    INT16;
+typedef uint_fast32_t   UINT32;
+typedef int_fast32_t    INT32;
+typedef int_fast32_t    INT;
+#else
+typedef uint8_t    UINT8;
+typedef int8_t     INT8;
+typedef uint16_t   UINT16;
+typedef int16_t    INT16;
+typedef uint32_t   UINT32;
+typedef int32_t    INT32;
+typedef int         INT;
+#endif
+
 #ifdef ARDUINO_ARCH_AVR
 #include "Arduino.h"
 #endif

@@ -135,7 +135,7 @@ bool SMLayerIndexed<RGB, optionFlags>::getPixel(uint16_t hardwareX, uint16_t har
 
 
 template <typename RGB, unsigned int optionFlags>
-void SMLayerIndexed<RGB, optionFlags>::fillRefreshRow(uint16_t hardwareY, rgb48 refreshRow[], int brightnessShifts) {
+void SMLayerIndexed<RGB, optionFlags>::fillRefreshRow(UINT16 hardwareY, rgb48 refreshRow[], int brightnessShifts) {
     RGB currentPixel;
     uint32_t i;
 
@@ -158,7 +158,7 @@ void SMLayerIndexed<RGB, optionFlags>::fillRefreshRow(uint16_t hardwareY, rgb48 
 }
 
 template <typename RGB, unsigned int optionFlags>
-void SMLayerIndexed<RGB, optionFlags>::fillRefreshRow(uint16_t hardwareY, rgb24 refreshRow[], int brightnessShifts) {
+void SMLayerIndexed<RGB, optionFlags>::fillRefreshRow(UINT16 hardwareY, rgb24 refreshRow[], int brightnessShifts) {
     RGB currentPixel;
     uint32_t i;
 

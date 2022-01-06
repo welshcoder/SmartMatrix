@@ -33,12 +33,12 @@
 template <typename RGB, unsigned int optionFlags>
 class SMLayerBackground : public SM_Layer {
     public:
-        SMLayerBackground(RGB * buffer, uint16_t width, uint16_t height, color_chan_t * colorCorrectionLUT);
+        SMLayerBackground(RGB * buffer, UINT16 width, UINT16 height, color_chan_t * colorCorrectionLUT);
         SMLayerBackground(uint16_t width, uint16_t height);
         void begin(void);
         void frameRefreshCallback();
-        void fillRefreshRow(uint16_t hardwareY, rgb48 refreshRow[], int brightnessShifts = 0);
-        void fillRefreshRow(uint16_t hardwareY, rgb24 refreshRow[], int brightnessShifts = 0);
+        void fillRefreshRow(UINT16 hardwareY, rgb48 refreshRow[], int brightnessShifts = 0);
+        void fillRefreshRow(UINT16 hardwareY, rgb24 refreshRow[], int brightnessShifts = 0);
         int getRequestedBrightnessShifts();
         bool isLayerChanged();
         
@@ -47,7 +47,7 @@ class SMLayerBackground : public SM_Layer {
         void copyRefreshToDrawing(void);
         void setBrightnessShifts(int numShifts);
 
-        void drawPixel(int16_t x, int16_t y, const RGB& color);
+        void drawPixel(INT16 x, INT16 y, const RGB& color);
         void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, const RGB& color);
         void drawFastVLine(int16_t x, int16_t y0, int16_t y1, const RGB& color);
         void drawFastHLine(int16_t x0, int16_t x1, int16_t y, const RGB& color);
@@ -70,10 +70,10 @@ class SMLayerBackground : public SM_Layer {
         void drawChar(int16_t x, int16_t y, const RGB& charColor, char character);
         void drawString(int16_t x, int16_t y, const RGB& charColor, const char text[]);
         void drawString(int16_t x, int16_t y, const RGB& charColor, const RGB& backColor, const char text[]);
-        void drawMonoBitmap(int16_t x, int16_t y, uint8_t width, uint8_t height, const RGB& bitmapColor, const uint8_t *bitmap);
+        void drawMonoBitmap(INT16 x, INT16 y, uint8_t width, uint8_t height, const RGB& bitmapColor, const uint8_t *bitmap);
 
         // reads pixel from drawing buffer, not refresh buffer
-        const RGB readPixel(int16_t x, int16_t y);
+        const RGB readPixel(UINT16 x, UINT16 y);
 
         RGB *backBuffer(void);
         void setBackBuffer(RGB *newBuffer);
@@ -92,17 +92,17 @@ class SMLayerBackground : public SM_Layer {
 
         RGB *backgroundBuffers[2];
 
-        RGB *getCurrentRefreshRow(uint16_t y);
+        RGB *getCurrentRefreshRow(UINT16 y);
 
-        void loadPixelToDrawBuffer(int16_t hwx, int16_t hwy, const RGB& color);
-        const RGB readPixelFromDrawBuffer(int16_t hwx, int16_t hwy);
-        void getBackgroundRefreshPixel(uint16_t x, uint16_t y, RGB &refreshPixel);
-        bool getForegroundRefreshPixel(uint16_t x, uint16_t y, RGB &xyPixel);
+        void loadPixelToDrawBuffer(INT16 hwx, INT16 hwy, const RGB& color);
+        const RGB readPixelFromDrawBuffer(INT16 hwx, INT16 hwy);
+        void getBackgroundRefreshPixel(UINT16 x, UINT16 y, RGB &refreshPixel);
+        bool getForegroundRefreshPixel(UINT16 x, UINT16 y, RGB &xyPixel);
 
         // drawing functions not meant for user
-        void drawHardwareHLine(uint16_t x0, uint16_t x1, uint16_t y, const RGB& color);
-        void drawHardwareVLine(uint16_t x, uint16_t y0, uint16_t y1, const RGB& color);
-        void bresteepline(int16_t x3, int16_t y3, int16_t x4, int16_t y4, const RGB& color);
+        void drawHardwareHLine(UINT16 x0, UINT16 x1, UINT16 y, const RGB& color);
+        void drawHardwareVLine(UINT16 x, UINT16 y0, UINT16 y1, const RGB& color);
+        void bresteepline(INT16 x3, INT16 y3, INT16 x4, INT16 y4, const RGB& color);
         void fillFlatSideTriangleInt(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, const RGB& color);
 
         uint8_t backgroundBrightness = 255;

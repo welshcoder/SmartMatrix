@@ -31,47 +31,47 @@
 #endif
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 SM_Layer * SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::baseLayer;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 volatile bool SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::dmaBufferUnderrun = false;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 bool SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::dmaBufferUnderrunSinceLastCheck = false;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-uint16_t SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::calc_refreshRate = 240;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+UINT16 SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::calc_refreshRate = 240;
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 bool SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::refreshRateLowered = false;
 // set to true initially so all layers get the initial refresh rate
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 bool SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::refreshRateChanged = true;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 volatile bool SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::brightnessChange = false;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 volatile bool SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::rotationChange = true;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 rotationDegrees SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::rotation = rotation0;
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 uint8_t SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::brightness;
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-int SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::multiRowRefresh_mapIndex_CurrentRowGroups = 0;
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+INT16 SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::multiRowRefresh_mapIndex_CurrentRowGroups = 0;
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-int SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::multiRowRefresh_mapIndex_CurrentPixelGroup = -1;
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+INT16 SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::multiRowRefresh_mapIndex_CurrentPixelGroup = -1;
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-int SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::multiRowRefresh_PixelOffsetFromPanelsAlreadyMapped = 0;
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+INT16 SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::multiRowRefresh_PixelOffsetFromPanelsAlreadyMapped = 0;
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-int SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::multiRowRefresh_NumPanelsAlreadyMapped = 0;
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+INT16 SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::multiRowRefresh_NumPanelsAlreadyMapped = 0;
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::SmartMatrixHub75Calc(uint8_t bufferrows, volatile rowDataStruct * rowDataBuf) {
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::SmartMatrixHub75Calc(UINT8 bufferrows, volatile rowDataStruct * rowDataBuf) {
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::addLayer(SM_Layer * newlayer) {
     if (baseLayer) {
         SM_Layer * templayer = baseLayer;
@@ -84,12 +84,12 @@ void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, op
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 int SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::countFPS(void) {
     static long loops = 0;
     static long lastMillis = 0;
     long currentMillis = millis();
-    int ret = 0;
+    UINT16 ret = 0;
 
     loops++;
     if (currentMillis - lastMillis >= 1000) {
@@ -108,17 +108,17 @@ int SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, opt
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::dmaBufferUnderrunCallback(void) {
     dmaBufferUnderrun = true;
 }
 
 
 // Refill the row buffer (called by rowCalculationISR). It may be interrupted by rowShiftCompleteISR.
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FASTRUN void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::matrixCalculations(bool initial) {
-    static unsigned int currentRow = 0;   // keeps track of the next row to write into the buffer
-    unsigned char numLoopsWithoutExit = 0;
+    static UINT16 currentRow = 0;   // keeps track of the next row to write into the buffer
+    UINT8 numLoopsWithoutExit = 0;
 
     // only run the loop if there is free space, and fill the entire buffer before returning
     while (SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::isRowBufferFree()) {
@@ -186,14 +186,14 @@ FASTRUN void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panel
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::setRotation(rotationDegrees newrotation) {
     rotation = newrotation;
     rotationChange = true;
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 uint16_t SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getScreenWidth(void) const {
     if (rotation == rotation0 || rotation == rotation180) {
         return matrixWidth;
@@ -203,7 +203,7 @@ uint16_t SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 uint16_t SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getScreenHeight(void) const {
     if (rotation == rotation0 || rotation == rotation180) {
         return matrixHeight;
@@ -213,14 +213,14 @@ uint16_t SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::setBrightness(uint8_t newBrightness) {
     brightness = newBrightness;
     brightnessChange = true;
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::setRefreshRate(uint16_t newRefreshRate) {
     if (newRefreshRate <= MIN_REFRESH_RATE)
         calc_refreshRate = MIN_REFRESH_RATE;
@@ -233,13 +233,13 @@ void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, op
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 uint16_t SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getRefreshRate(void) {
     return calc_refreshRate;
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 bool SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getdmaBufferUnderrunFlag(void) {
     if (dmaBufferUnderrunSinceLastCheck) {
         dmaBufferUnderrunSinceLastCheck = false;
@@ -249,7 +249,7 @@ bool SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, op
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 bool SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getRefreshRateLoweredFlag(void) {
     if (refreshRateLowered) {
         refreshRateLowered = false;
@@ -259,7 +259,7 @@ bool SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, op
 }
 
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 FLASHMEM void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::begin(void) {
     SM_Layer * templayer = baseLayer;
     while (templayer) {
@@ -274,24 +274,24 @@ FLASHMEM void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, pane
 
 #define IS_LAST_PANEL_MAP_ENTRY(x) (!x.rowOffset && !x.bufferOffset && !x.numPixels)
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::resetMultiRowRefreshMapPosition(void) {   
     multiRowRefresh_mapIndex_CurrentRowGroups = 0;
     resetMultiRowRefreshMapPositionPixelGroupToStartOfRow();
 }
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::resetMultiRowRefreshMapPositionPixelGroupToStartOfRow(void) {   
     multiRowRefresh_mapIndex_CurrentPixelGroup = multiRowRefresh_mapIndex_CurrentRowGroups;
     multiRowRefresh_PixelOffsetFromPanelsAlreadyMapped = 0;
     multiRowRefresh_NumPanelsAlreadyMapped = 0;
 }
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::advanceMultiRowRefreshMapToNextRow(void) {   
     static const PanelMappingEntry * map = getMultiRowRefreshPanelMap(panelType);
 
-    int currentRowOffset = map[multiRowRefresh_mapIndex_CurrentRowGroups].rowOffset;
+    INT16 currentRowOffset = map[multiRowRefresh_mapIndex_CurrentRowGroups].rowOffset;
 
     // advance until end of table, or entry with new row nubmer is found
     while(!IS_LAST_PANEL_MAP_ENTRY(map[multiRowRefresh_mapIndex_CurrentRowGroups])) {
@@ -304,11 +304,11 @@ void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, op
     resetMultiRowRefreshMapPositionPixelGroupToStartOfRow();
 }
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::advanceMultiRowRefreshMapToNextPixelGroup(void) {   
     static const PanelMappingEntry * map = getMultiRowRefreshPanelMap(panelType);
 
-    int currentRowOffset = map[multiRowRefresh_mapIndex_CurrentPixelGroup].rowOffset;
+    INT16 currentRowOffset = map[multiRowRefresh_mapIndex_CurrentPixelGroup].rowOffset;
 
     // don't change if we're already on the end
     if(IS_LAST_PANEL_MAP_ENTRY(map[multiRowRefresh_mapIndex_CurrentPixelGroup])) {
@@ -332,8 +332,8 @@ void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, op
 }
 
 // returns the row offset from the map, or -1 if we've gone through the whole map already
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-int SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getMultiRowRefreshRowOffset(void) {   
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+UINT16 SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getMultiRowRefreshRowOffset(void) {   
     static const PanelMappingEntry * map = getMultiRowRefreshPanelMap(panelType);
 
     if(IS_LAST_PANEL_MAP_ENTRY(map[multiRowRefresh_mapIndex_CurrentRowGroups])){
@@ -343,35 +343,35 @@ int SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, opt
     return map[multiRowRefresh_mapIndex_CurrentRowGroups].rowOffset;    
 }
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-int SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getMultiRowRefreshNumPixelsToMap(void) {        
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+UINT16 SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getMultiRowRefreshNumPixelsToMap(void) {        
     static const PanelMappingEntry * map = getMultiRowRefreshPanelMap(panelType);
 
     return map[multiRowRefresh_mapIndex_CurrentPixelGroup].numPixels;    
 }
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-int SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getMultiRowRefreshPixelGroupOffset(void) {        
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+UINT16 SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getMultiRowRefreshPixelGroupOffset(void) {        
     static const PanelMappingEntry * map = getMultiRowRefreshPanelMap(panelType);
 
     return map[multiRowRefresh_mapIndex_CurrentPixelGroup].bufferOffset + multiRowRefresh_PixelOffsetFromPanelsAlreadyMapped;
 }
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::loadMatrixBuffers48(volatile rowDataStruct * currentRowDataPtr, unsigned int currentRow) {
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::loadMatrixBuffers48(volatile rowDataStruct * currentRowDataPtr, UINT16 currentRow) {
     /*  Read a new row of pixel data from the layers, extract the bitplanes for each pixel, reformat
         the data into the format needed for FlexIO, and store that in the rowDataBuffer.
         Bit depths are supported from 1 bit per color channel (3 bits per pixel) to 16 bits per color channel (48 bits per pixel). */
 
-    int i;
-    int multiRowRefreshRowOffset = 0;
-    const int numPixelsPerTempRow = PIXELS_PER_LATCH/PHYSICAL_ROWS_PER_REFRESH_ROW;
+    UINT16 i;
+    INT16 multiRowRefreshRowOffset = 0;
+    const INT16 numPixelsPerTempRow = PIXELS_PER_LATCH/PHYSICAL_ROWS_PER_REFRESH_ROW;
 
     // Temporary buffers to store rgb pixel data for reformatting (static to avoid putting large buffer on the stack)
     static rgb48 tempRow0[numPixelsPerTempRow];
     static rgb48 tempRow1[numPixelsPerTempRow];
 
-    int c = 0;
+    INT16 c = 0;
 
     // multi row refresh isn't very efficient, slowing this function down by ~30% for panels that don't even need multi row refresh.  For now, only enable the code if needed
     if(MULTI_ROW_REFRESH_REQUIRED) { 
@@ -388,59 +388,56 @@ FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight
         // Scan through the entire chain of panels and extract rows from each one
         // using the stacking options to get the correct rows (some panels can be upside down).
         SM_Layer * templayer = SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::baseLayer;
-        int y0, y1; // positions of the two rows we need
+        INT16 y0, y1; // positions of the two rows we need
         while (templayer) {
-            if(templayer->isEnabled())
-            {
-                for (i = 0; i < MATRIX_STACK_HEIGHT; i++) {
-                    // Z-shape, bottom to top
-                    if (!(optionFlags & SMARTMATRIX_OPTIONS_C_SHAPE_STACKING) &&
-                            (optionFlags & SMARTMATRIX_OPTIONS_BOTTOM_TO_TOP_STACKING)) {
-                        // Bottom to Top Stacking: load data buffer with top panels first, bottom panels last, as top panels are at the furthest end of the chain (initial data is shifted out the furthest)
-                        y0 = currentRow + multiRowRefreshRowOffset + i * MATRIX_PANEL_HEIGHT;
+            for (i = 0; i < MATRIX_STACK_HEIGHT; i++) {
+                // Z-shape, bottom to top
+                if (!(optionFlags & SMARTMATRIX_OPTIONS_C_SHAPE_STACKING) &&
+                        (optionFlags & SMARTMATRIX_OPTIONS_BOTTOM_TO_TOP_STACKING)) {
+                    // Bottom to Top Stacking: load data buffer with top panels first, bottom panels last, as top panels are at the furthest end of the chain (initial data is shifted out the furthest)
+                    y0 = currentRow + multiRowRefreshRowOffset + i * MATRIX_PANEL_HEIGHT;
+                    y1 = y0 + ROW_PAIR_OFFSET;
+                // Z-shape, top to bottom
+                } else if (!(optionFlags & SMARTMATRIX_OPTIONS_C_SHAPE_STACKING) &&
+                           !(optionFlags & SMARTMATRIX_OPTIONS_BOTTOM_TO_TOP_STACKING)) {
+                    // Top to Bottom Stacking: load data buffer with bottom panels first, top panels last, as bottom panels are at the furthest end of the chain (initial data is shifted out the furthest)
+                    y0 = currentRow + multiRowRefreshRowOffset + (MATRIX_STACK_HEIGHT - i - 1) * MATRIX_PANEL_HEIGHT;
+                    y1 = y0 + ROW_PAIR_OFFSET;
+                // C-shape, bottom to top
+                } else if ((optionFlags & SMARTMATRIX_OPTIONS_C_SHAPE_STACKING) &&
+                           (optionFlags & SMARTMATRIX_OPTIONS_BOTTOM_TO_TOP_STACKING)) {
+                    // C-shaped stacking: alternate direction of filling (or loading) for each matrixwidth-sized stack, stack closest to Teensy is right-side up
+                    //   swap row order from top to bottom for each stack (tempRow1 filled with top half of panel, tempRow0 filled with bottom half when upside down)
+                    //   the last stack is always right-side up, figure out orientation of other stacks based on that
+                    // Bottom to Top Stacking: load data buffer with top panels first, bottom panels last, as top panels are at the furthest end of the chain (initial data is shifted out the furthest)
+
+                    // is i the last stack, or an even number of stacks away from the last stack?
+                    if((i % 2) == ((MATRIX_STACK_HEIGHT - 1) % 2)) {
+                        y0 = currentRow + multiRowRefreshRowOffset + (i) * MATRIX_PANEL_HEIGHT;
                         y1 = y0 + ROW_PAIR_OFFSET;
-                    // Z-shape, top to bottom
-                    } else if (!(optionFlags & SMARTMATRIX_OPTIONS_C_SHAPE_STACKING) &&
-                            !(optionFlags & SMARTMATRIX_OPTIONS_BOTTOM_TO_TOP_STACKING)) {
-                        // Top to Bottom Stacking: load data buffer with bottom panels first, top panels last, as bottom panels are at the furthest end of the chain (initial data is shifted out the furthest)
+                    } else {
+                        y1 = (MATRIX_SCAN_MOD - currentRow + multiRowRefreshRowOffset - 1) + (i) * MATRIX_PANEL_HEIGHT;
+                        y0 = y1 + ROW_PAIR_OFFSET;
+                    }
+                // C-shape, top to bottom
+                } else if ((optionFlags & SMARTMATRIX_OPTIONS_C_SHAPE_STACKING) &&
+                           !(optionFlags & SMARTMATRIX_OPTIONS_BOTTOM_TO_TOP_STACKING)) {
+                    // C-shaped stacking: alternate direction of filling (or loading) for each matrixwidth-sized stack, stack closest to Teensy is right-side up
+                    //   swap row order from top to bottom for each stack (tempRow1 filled with top half of panel, tempRow0 filled with bottom half when upside down)
+                    //   the last stack is always right-side up, figure out orientation of other stacks based on that
+                    // Top to Bottom Stacking: load data buffer with bottom panels first, top panels last, as bottom panels are at the furthest end of the chain (initial data is shifted out the furthest)
+
+                    // is i the last stack, or an even number of stacks away from the last stack?
+                    if((i % 2) == ((MATRIX_STACK_HEIGHT - 1) % 2)) {
                         y0 = currentRow + multiRowRefreshRowOffset + (MATRIX_STACK_HEIGHT - i - 1) * MATRIX_PANEL_HEIGHT;
                         y1 = y0 + ROW_PAIR_OFFSET;
-                    // C-shape, bottom to top
-                    } else if ((optionFlags & SMARTMATRIX_OPTIONS_C_SHAPE_STACKING) &&
-                            (optionFlags & SMARTMATRIX_OPTIONS_BOTTOM_TO_TOP_STACKING)) {
-                        // C-shaped stacking: alternate direction of filling (or loading) for each matrixwidth-sized stack, stack closest to Teensy is right-side up
-                        //   swap row order from top to bottom for each stack (tempRow1 filled with top half of panel, tempRow0 filled with bottom half when upside down)
-                        //   the last stack is always right-side up, figure out orientation of other stacks based on that
-                        // Bottom to Top Stacking: load data buffer with top panels first, bottom panels last, as top panels are at the furthest end of the chain (initial data is shifted out the furthest)
-
-                        // is i the last stack, or an even number of stacks away from the last stack?
-                        if((i % 2) == ((MATRIX_STACK_HEIGHT - 1) % 2)) {
-                            y0 = currentRow + multiRowRefreshRowOffset + (i) * MATRIX_PANEL_HEIGHT;
-                            y1 = y0 + ROW_PAIR_OFFSET;
-                        } else {
-                            y1 = (MATRIX_SCAN_MOD - currentRow + multiRowRefreshRowOffset - 1) + (i) * MATRIX_PANEL_HEIGHT;
-                            y0 = y1 + ROW_PAIR_OFFSET;
-                        }
-                    // C-shape, top to bottom
-                    } else if ((optionFlags & SMARTMATRIX_OPTIONS_C_SHAPE_STACKING) &&
-                            !(optionFlags & SMARTMATRIX_OPTIONS_BOTTOM_TO_TOP_STACKING)) {
-                        // C-shaped stacking: alternate direction of filling (or loading) for each matrixwidth-sized stack, stack closest to Teensy is right-side up
-                        //   swap row order from top to bottom for each stack (tempRow1 filled with top half of panel, tempRow0 filled with bottom half when upside down)
-                        //   the last stack is always right-side up, figure out orientation of other stacks based on that
-                        // Top to Bottom Stacking: load data buffer with bottom panels first, top panels last, as bottom panels are at the furthest end of the chain (initial data is shifted out the furthest)
-
-                        // is i the last stack, or an even number of stacks away from the last stack?
-                        if((i % 2) == ((MATRIX_STACK_HEIGHT - 1) % 2)) {
-                            y0 = currentRow + multiRowRefreshRowOffset + (MATRIX_STACK_HEIGHT - i - 1) * MATRIX_PANEL_HEIGHT;
-                            y1 = y0 + ROW_PAIR_OFFSET;
-                        } else {
-                            y1 = (MATRIX_SCAN_MOD - currentRow + multiRowRefreshRowOffset - 1) + (MATRIX_STACK_HEIGHT - i - 1) * MATRIX_PANEL_HEIGHT;
-                            y0 = y1 + ROW_PAIR_OFFSET;
-                        }
+                    } else {
+                        y1 = (MATRIX_SCAN_MOD - currentRow + multiRowRefreshRowOffset - 1) + (MATRIX_STACK_HEIGHT - i - 1) * MATRIX_PANEL_HEIGHT;
+                        y0 = y1 + ROW_PAIR_OFFSET;
                     }
-                    templayer->fillRefreshRow(y0, &tempRow0[i * matrixWidth]);
-                    templayer->fillRefreshRow(y1, &tempRow1[i * matrixWidth]);
                 }
+                templayer->fillRefreshRow(y0, &tempRow0[i * matrixWidth]);
+                templayer->fillRefreshRow(y1, &tempRow1[i * matrixWidth]);
             }
             templayer = templayer->nextLayer;
         }
@@ -454,8 +451,8 @@ FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight
 
         while(i < numPixelsPerTempRow) {
 
-            int numPixelsToMap;
-            int currentMapOffset;
+            INT16 numPixelsToMap;
+            INT16 currentMapOffset;
             bool reversePixelBlock;
 
             if(MULTI_ROW_REFRESH_REQUIRED) { 
@@ -475,11 +472,11 @@ FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight
             }
 
             // parse through grouping of pixels, loading from temp buffer and writing to refresh buffer
-            for(int k=0; k < numPixelsToMap; k++) {
-                uint16_t r0, g0, b0, r1, g1, b1;
-                int ind;
+            for(INT16 k=0; k < numPixelsToMap; k++) {
+                UINT16 r0, g0, b0, r1, g1, b1;
+                INT16 ind;
 
-                int refreshBufferPosition;
+                INT16 refreshBufferPosition;
                 if(MULTI_ROW_REFRESH_REQUIRED) { 
                     if(reversePixelBlock) {
                         refreshBufferPosition = currentMapOffset-k;
@@ -491,7 +488,7 @@ FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight
                 }
 
                 // for upside down stacks, flip order
-                int currentStack = i/matrixWidth;
+                INT16 currentStack = i/matrixWidth;
                 if((optionFlags & SMARTMATRIX_OPTIONS_C_SHAPE_STACKING) && !((currentStack % 2) == ((MATRIX_STACK_HEIGHT - 1) % 2))) {
                     // reverse order of this stack's data if it's reversed (if currentStack is the last stack, or an even number of stacks away from the last stack)
                     ind = (currentStack*matrixWidth) + (matrixWidth-1) - ((i+k)%matrixWidth);
@@ -511,11 +508,11 @@ FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight
                 }
 
                 // loop through each bitplane in the current pixel's RGB values and format the bits to match the FlexIO pin configuration
-                uint32_t rgbdata;
-                uint8_t shift = (16 - COLOR_DEPTH_BITS);
-                uint16_t mask = 1 << shift;
+                UINT32 rgbdata;
+                UINT8 shift = (16 - COLOR_DEPTH_BITS);
+                UINT16 mask = 1 << shift;
 
-                for (int bitindex = 0; bitindex < COLOR_DEPTH_BITS; bitindex++) {
+                for (UINT16 bitindex = 0; bitindex < COLOR_DEPTH_BITS; bitindex++) {
                     rgbdata  = (r0 & mask) << (SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getFlexPinConfig().r0);
                     rgbdata |= (g0 & mask) << (SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getFlexPinConfig().g0);
                     rgbdata |= (b0 & mask) << (SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getFlexPinConfig().b0);
@@ -537,7 +534,7 @@ FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight
             }
         }
 
-        unsigned int addressbits;
+        UINT16 addressbits;
 
         if(PANEL_USES_ALT_ADDRESSING_MODE(panelType))
             addressbits = ~(0x01 << currentRow);
@@ -556,8 +553,8 @@ FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight
     } while (MULTI_ROW_REFRESH_REQUIRED ? (multiRowRefreshRowOffset > 0) : 0);
 }
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
-FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::loadMatrixBuffers(unsigned int currentRow) {
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
+FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::loadMatrixBuffers(UINT16 currentRow) {
     volatile rowDataStruct * currentRowDataPtr = SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::getNextRowBufferPtr();
     // same function supports any refresh depth up to 48
     loadMatrixBuffers48(currentRowDataPtr, currentRow);

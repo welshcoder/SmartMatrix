@@ -8,23 +8,23 @@ modified to only contain indexes and not any data elements, and allow for peekin
 #include "CircularBuffer_SM.h"
 
 
-void cbInit(CircularBuffer_SM *cb, int size) {
+void cbInit(CircularBuffer_SM *cb, UINT16 size) {
     cb->size  = size;
     cb->start = 0;
     cb->count = 0;
 }
 
 /* below from fill count mods */
-int cbIsFull(CircularBuffer_SM *cb) {
+UINT16 cbIsFull(CircularBuffer_SM *cb) {
     return cb->count == cb->size;
 }
 
-int cbIsEmpty(CircularBuffer_SM *cb) {
+UINT16 cbIsEmpty(CircularBuffer_SM *cb) {
     return cb->count == 0;
 }
 
 // returns index of next free element
-int cbGetNextWrite(CircularBuffer_SM *cb) {
+UINT16 cbGetNextWrite(CircularBuffer_SM *cb) {
     return (cb->start + cb->count) % cb->size;
 }
 
@@ -40,6 +40,6 @@ void cbWrite(CircularBuffer_SM *cb) {
         ++ cb->count;
 }
 
-int cbGetNextRead(CircularBuffer_SM *cb) {
+UINT16 cbGetNextRead(CircularBuffer_SM *cb) {
     return cb->start;
 }

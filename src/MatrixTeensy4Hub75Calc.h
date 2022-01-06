@@ -24,13 +24,13 @@
 #ifndef SMARTMATRIXCALCT4_H
 #define SMARTMATRIXCALCT4_H
 
-template <int refreshDepth, int matrixWidth, int matrixHeight, unsigned char panelType, uint32_t optionFlags>
+template <UINT16 refreshDepth, UINT16 matrixWidth, UINT16 matrixHeight, UINT8 panelType, uint32_t optionFlags>
 class SmartMatrixHub75Calc {
     public:
         typedef typename SmartMatrixRefreshT4<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::rowDataStruct rowDataStruct;
 
         // init
-        SmartMatrixHub75Calc(uint8_t bufferrows, volatile rowDataStruct * rowDataBuf);
+        SmartMatrixHub75Calc(UINT8 bufferrows, volatile rowDataStruct * rowDataBuf);
         void begin(void);
         void addLayer(SM_Layer * newlayer);
 
@@ -57,15 +57,15 @@ class SmartMatrixHub75Calc {
         static SM_Layer * baseLayer;
 
         // functions for refreshing
-        static void loadMatrixBuffers(unsigned int currentRow);
-        static void loadMatrixBuffers48(volatile rowDataStruct * currentRowDataPtr, unsigned int currentRow);
+        static void loadMatrixBuffers(UINT16 currentRow);
+        static void loadMatrixBuffers48(volatile rowDataStruct * currentRowDataPtr, UINT16 currentRow);
         static void resetMultiRowRefreshMapPosition(void);
         static void resetMultiRowRefreshMapPositionPixelGroupToStartOfRow(void);
         static void advanceMultiRowRefreshMapToNextRow(void);
         static void advanceMultiRowRefreshMapToNextPixelGroup(void);
-        static int getMultiRowRefreshRowOffset(void);
-        static int getMultiRowRefreshNumPixelsToMap(void);
-        static int getMultiRowRefreshPixelGroupOffset(void);
+        static UINT16 getMultiRowRefreshRowOffset(void);
+        static UINT16 getMultiRowRefreshNumPixelsToMap(void);
+        static UINT16 getMultiRowRefreshPixelGroupOffset(void);
 
         // configuration
         static volatile bool brightnessChange;
@@ -73,15 +73,15 @@ class SmartMatrixHub75Calc {
         static volatile bool dmaBufferUnderrun;
         static uint8_t brightness;
         static rotationDegrees rotation;
-        static uint16_t calc_refreshRate;
+        static UINT16 calc_refreshRate;
         static bool dmaBufferUnderrunSinceLastCheck;
         static bool refreshRateLowered;
         static bool refreshRateChanged;
 
-        static int multiRowRefresh_mapIndex_CurrentRowGroups;
-        static int multiRowRefresh_mapIndex_CurrentPixelGroup;
-        static int multiRowRefresh_PixelOffsetFromPanelsAlreadyMapped;
-        static int multiRowRefresh_NumPanelsAlreadyMapped;
+        static INT16 multiRowRefresh_mapIndex_CurrentRowGroups;
+        static INT16 multiRowRefresh_mapIndex_CurrentPixelGroup;
+        static INT16 multiRowRefresh_PixelOffsetFromPanelsAlreadyMapped;
+        static INT16 multiRowRefresh_NumPanelsAlreadyMapped;
 };
 
 #endif
