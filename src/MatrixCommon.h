@@ -26,7 +26,7 @@
 
 #include <stdint.h>
 
-#define SM_FAST_INTEGERS
+//#define SM_FAST_INTEGERS
 
 #if defined(SM_FAST_INTEGERS)
 typedef uint_fast8_t    UINT8;
