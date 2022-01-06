@@ -267,7 +267,7 @@ void SMLayerIndexed<RGB, optionFlags>::handleBufferSwap(void) {
 template <typename RGB, unsigned int optionFlags>
 void SMLayerIndexed<RGB, optionFlags>::drawPixel(int16_t x, int16_t y, uint8_t index) {
 
-    if(x < 0 || x >= this->localWidth || y < 0 || y >= this->localHeight)
+    if(x < 0 || x >= (signed) this->localWidth || y < 0 || y >= (signed) this->localHeight)
         return;
 
     uint32_t bitmask;
@@ -311,14 +311,14 @@ void SMLayerIndexed<RGB, optionFlags>::drawChar(int16_t x, int16_t y, uint8_t in
     int32_t k;
 
     // only draw if character is on the screen
-    if (x + layerFont->Width < 0 || x >= this->localWidth) {
+    if (x + (signed) layerFont->Width < 0 || x >= (signed) this->localWidth) {
         return;
     }
 
     for (k = y; k < y+layerFont->Height; k++) {
         // ignore rows that are not on the screen
         if(k < 0) continue;
-        if (k >= this->localHeight) return;
+        if (k >= (signed) this->localHeight) return;
 
         tempBitmask = getBitmapFontRowAtXY(character, k - y, layerFont);
         drawMonoBitmap(x,k,8,1,index,&tempBitmask,backgroundIndex);

@@ -390,6 +390,8 @@ FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight
         SM_Layer * templayer = SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight, panelType, optionFlags>::baseLayer;
         INT16 y0, y1; // positions of the two rows we need
         while (templayer) {
+            if(templayer->isEnabled())
+            {
             for (i = 0; i < MATRIX_STACK_HEIGHT; i++) {
                 // Z-shape, bottom to top
                 if (!(optionFlags & SMARTMATRIX_OPTIONS_C_SHAPE_STACKING) &&
@@ -438,6 +440,7 @@ FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight
                 }
                 templayer->fillRefreshRow(y0, &tempRow0[i * matrixWidth]);
                 templayer->fillRefreshRow(y1, &tempRow1[i * matrixWidth]);
+            }
             }
             templayer = templayer->nextLayer;
         }
