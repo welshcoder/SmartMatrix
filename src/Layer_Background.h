@@ -105,7 +105,7 @@ class SMLayerBackground : public SM_Layer {
         void bresteepline(INT16 x3, INT16 y3, INT16 x4, INT16 y4, const RGB& color);
         void fillFlatSideTriangleInt(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, const RGB& color);
 
-        uint8_t backgroundBrightness = 255;
+        UINT8 backgroundBrightness = 255;
         color_chan_t * backgroundColorCorrectionLUT;
         bitmap_font *font;
 
