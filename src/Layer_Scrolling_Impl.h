@@ -347,14 +347,14 @@ void SMLayerScrolling<RGB, optionFlags>::setStartOffsetFromLeft(int offset) {
 // if font size or position changed since the last call, redraw the whole frame
 template <typename RGB, unsigned int optionFlags>
 void SMLayerScrolling<RGB, optionFlags>::redrawScrollingText(void) {
-    int j, k;
+    UINT16 j, k;
     int charPosition, textPosition;
-    uint16_t charY0, charY1;
+    UINT16 charY0, charY1;
 
-    for (j = 0; (unsigned)j < this->localHeight; j++) {
+    for (j = 0; j < this->localHeight; j++) {
 
         // skip rows without text
-        if (j < fontTopOffset || j >= fontTopOffset + scrollFont->Height)
+        if ((INT32)j < fontTopOffset || (INT32)j >= fontTopOffset + scrollFont->Height)
             continue;
 
         // now in row with text
@@ -371,7 +371,7 @@ void SMLayerScrolling<RGB, optionFlags>::redrawScrollingText(void) {
         // find rows within character bitmap that will be drawn (0-font->height unless text is partially off screen)
         charY0 = j - fontTopOffset;
 
-        if (this->localHeight < (unsigned)fontTopOffset + scrollFont->Height) {
+        if ((INT32)this->localHeight < fontTopOffset + scrollFont->Height) {
             charY1 = this->localHeight - fontTopOffset;
         } else {
             charY1 = scrollFont->Height;
@@ -387,7 +387,7 @@ void SMLayerScrolling<RGB, optionFlags>::redrawScrollingText(void) {
                 memset(&scrollingBitmap[((j + k) * SCROLLING_BUFFER_ROW_SIZE)], 0x00, SCROLLING_BUFFER_ROW_SIZE);
         }
 
-        while (textPosition < textlen && (unsigned)charPosition < this->localWidth) {
+        while (textPosition < textlen && charPosition < (INT32)this->localWidth) {
             uint8_t tempBitmask;
             // draw character from top to bottom
             for (k = charY0; k < charY1; k++) {
