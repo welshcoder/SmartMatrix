@@ -455,7 +455,7 @@ FASTRUN INLINE void SmartMatrixHub75Calc<refreshDepth, matrixWidth, matrixHeight
         while(i < numPixelsPerTempRow) {
 
             INT16 numPixelsToMap;
-            INT16 currentMapOffset;
+            INT16 currentMapOffset=0;
             bool reversePixelBlock;
 
             if(MULTI_ROW_REFRESH_REQUIRED) { 
