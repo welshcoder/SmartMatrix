@@ -426,7 +426,6 @@ static const PROGMEM unsigned char __apple8x13_bitmap__[] = {
 	________,
 	________,
 	________,
-	________,
 	___X____,
 	__XXX___,
 	___X____,
@@ -435,6 +434,7 @@ static const PROGMEM unsigned char __apple8x13_bitmap__[] = {
 	___X____,
 	__XXX___,
 	___X____,
+	________,
 	________,
 //  59 $3b 'semicolon'
 //	width 8, bbx 0, bby -2, bbw 8, bbh 13

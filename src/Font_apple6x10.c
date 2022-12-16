@@ -343,7 +343,6 @@ static const PROGMEM unsigned char __apple6x10_bitmap__[] = {
 //  58 $3a 'colon'
 //	width 6, bbx 0, bby -2, bbw 6, bbh 10
 	________,
-	________,
 	__X_____,
 	_XXX____,
 	__X_____,
@@ -351,6 +350,7 @@ static const PROGMEM unsigned char __apple6x10_bitmap__[] = {
 	__X_____,
 	_XXX____,
 	__X_____,
+	________,
 	________,
 //  59 $3b 'semicolon'
 //	width 6, bbx 0, bby -2, bbw 6, bbh 10
