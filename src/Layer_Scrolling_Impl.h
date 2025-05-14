@@ -232,7 +232,7 @@ void SMLayerScrolling<RGB, optionFlags>::start(const char inputtext[], int numSc
     int length = textLayerMaxStringLength;
     if ((int)strlen((const char *)inputtext) < length)
         length = strlen((const char *)inputtext);
-    strncpy(text, (const char *)inputtext, length);
+    memcpy(text, (const char *)inputtext, length);
     text[textLayerMaxStringLength-1] = '\0'; // add null-termination to fix compiler warning
     textlen = length;
     scrollcounter = numScrolls;
@@ -252,7 +252,7 @@ void SMLayerScrolling<RGB, optionFlags>::update(const char inputtext[]){
     int length = textLayerMaxStringLength;
     if ((int)strlen((const char *)inputtext) < length)
         length = strlen((const char *)inputtext);
-    strncpy(text, (const char *)inputtext, length);
+    memcpy(text, (const char *)inputtext, length);
     text[textLayerMaxStringLength-1] = '\0'; // add null-termination to fix compiler warning
     textlen = length;
     textWidth = (textlen * scrollFont->Width) - 1;
